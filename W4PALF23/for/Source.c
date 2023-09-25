@@ -23,5 +23,6 @@ int main(void)
 			printf("%d is a factor of %d\n", counter, number);
 	}
 
+
 	return 0;
 }
