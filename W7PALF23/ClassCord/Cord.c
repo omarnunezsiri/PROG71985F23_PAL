@@ -1,0 +1,95 @@
+// PAL Week 7 - Cord ADT implementation
+// 
+// PROG71985-W23/F23
+// Omar Nunez Siri
+// 
+// revision history
+// 1.0			2023-02-20		initial
+// 2.0			2023-10-14		refactored
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include "Cord.h"
+#include <stdlib.h>
+
+CORD CreateCord(int id)
+{
+	CORD cord;
+
+	cord.id = id;
+	cord.currentIndex = 0;
+
+	return cord;
+}
+
+void DisplayCord(CORD thisCord)
+{
+	printf("id: %d\n", thisCord.id);
+	printf("currentIndex: %d\n", thisCord.currentIndex);
+	printf("\nUsers:\n");
+
+	for (int i = 0; i < thisCord.currentIndex; i++)
+	{
+		DisplayUser(thisCord.users[i]);
+	}
+}
+
+// Pass by Reference/Value review
+void AddNewUser(CORD* thisCord, USER newUser)
+{
+	thisCord->users[thisCord->currentIndex] = newUser; // modifying the collection of users
+	thisCord->currentIndex++; // currentIndex will be modified
+}
+
+void StreamWriteCord(CORD thisCord, char filename[])
+{
+	FILE* fp = fopen(filename, "w"); // what does "w" mean?
+	if (!fp) // file doesn't exist or is corrupted
+	{
+		fprintf(stderr, "Error opening %s. Exiting...\n", filename);
+		exit(1);
+	}
+	else
+	{
+		fprintf(fp, "%d\n", thisCord.id);
+		fprintf(fp, "%d\n", thisCord.currentIndex);
+
+		for (int i = 0; i < thisCord.currentIndex; i++) // looping through the collection of users
+		{
+			StreamWriteUser(thisCord.users[i], fp);
+		}
+
+		fclose(fp); // don't forget to close your files!
+	}
+}
+
+CORD StreamReadCord(char filename[])
+{
+	CORD newCord;
+
+	FILE* fp = fopen(filename, "r"); // what does "r" mean?
+	if (!fp)
+	{
+		fprintf(stderr, "Error opening %s. Exiting...\n", filename);
+		exit(1);
+	}
+	else
+	{
+		int id;
+		int currentIndex;
+		fscanf_s(fp, "%d\n", &id); // read the Cord's id
+		newCord = CreateCord(id);
+
+		fscanf_s(fp, "%d\n", &currentIndex); // read the number of users
+		/* Read all users */
+		for (int i = 0; i < currentIndex; i++) 
+		{
+			USER newUser = StreamReadUser(fp);
+			AddNewUser(&newCord, newUser);
+		}
+
+		fclose(fp); // don't forget to close your files!
+	}
+
+	return newCord;
+}
