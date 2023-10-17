@@ -34,9 +34,10 @@ void DisplayCord(CORD thisCord)
 	}
 }
 
+
 // Pass by Reference/Value review
 void AddNewUser(CORD* thisCord, USER newUser)
-{
+{ 
 	thisCord->users[thisCord->currentIndex] = newUser; // modifying the collection of users
 	thisCord->currentIndex++; // currentIndex will be modified
 }
@@ -63,10 +64,8 @@ void StreamWriteCord(CORD thisCord, char filename[])
 	}
 }
 
-CORD StreamReadCord(char filename[])
+void StreamReadCord(CORD* newCord, char filename[])
 {
-	CORD newCord;
-
 	FILE* fp = fopen(filename, "r"); // what does "r" mean?
 	if (!fp)
 	{
@@ -78,18 +77,16 @@ CORD StreamReadCord(char filename[])
 		int id;
 		int currentIndex;
 		fscanf_s(fp, "%d\n", &id); // read the Cord's id
-		newCord = CreateCord(id);
+		*newCord = CreateCord(id);
 
 		fscanf_s(fp, "%d\n", &currentIndex); // read the number of users
 		/* Read all users */
 		for (int i = 0; i < currentIndex; i++) 
 		{
 			USER newUser = StreamReadUser(fp);
-			AddNewUser(&newCord, newUser);
+			AddNewUser(newCord, newUser);
 		}
 
 		fclose(fp); // don't forget to close your files!
 	}
-
-	return newCord;
 }

@@ -65,7 +65,7 @@ USER StreamReadUser(FILE* fp)
 	/* fcanf vs fgets? */
 	fscanf_s(fp, "%d\n", &id);
 
-	fgets(username, MAXSTR, fp);
+	fgets(username, MAXSTR, fp); // no format
 
 	fgets(password, MAXSTR, fp);
 

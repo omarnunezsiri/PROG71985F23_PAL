@@ -22,4 +22,4 @@ CORD CreateCord(int); // creates a Cord
 void DisplayCord(CORD); // displays a Cord
 void AddNewUser(CORD*, USER); // adds a new user
 void StreamWriteCord(CORD, char[]); // writes a Cord to a file
-CORD StreamReadCord(char[]); // reads a Cord from a file
+void StreamReadCord(CORD*, char[]); // reads a Cord from a file

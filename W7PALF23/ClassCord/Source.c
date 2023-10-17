@@ -8,6 +8,7 @@
 // 1.0			2023-02-20		initial
 // 2.0			2023-10-14		reviewed/refactored
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h> // standard input and output streams (stdin, stdout)
 #include "Cord.h"
 
@@ -15,6 +16,12 @@
 
 int main(void)
 {
+	CORD myCord;
+	StreamReadCord(&myCord, DATAFILE);
+
+	DisplayCord(myCord);
+
+	StreamWriteCord(myCord, DATAFILE);
 	return 0;
 }
 
@@ -38,7 +45,8 @@ int main(void)
 
 /*
 * Example with existing datafile
-	CORD myCord = StreamReadCord(DATAFILE);
+	CORD myCord;
+	StreamReadCord(&myCord, DATAFILE);
 
 	DisplayCord(myCord);
 
