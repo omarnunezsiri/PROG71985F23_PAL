@@ -13,7 +13,7 @@
 
 typedef struct Pizza {
 	int id;
-	int currentIndex;
+	int currentIndex; // to indicate how many toppings we currently have
 	TOPPING toppings[MAXTOPPINGS]; // reusing the topping struct
 }PIZZA;
 

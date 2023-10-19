@@ -9,7 +9,7 @@
 #include "Topping.h"
 #include <string.h>
 
-TOPPING CreateTopping(int id, char toppingName[])
+TOPPING CreateTopping(int id, char* toppingName)
 {
 	TOPPING Topping;
 
@@ -43,7 +43,7 @@ void removeTrailingNewLine(char* buffer)
 {
 	for (int i = 0; i < strlen(buffer); i++)
 		if (buffer[i] == '\n')
-			buffer[i] = '\0';
+			buffer[i] = '\0'; // strings are null (\0) terminated
 }
 
 TOPPING StreamReadTopping(FILE* fp)
@@ -52,9 +52,9 @@ TOPPING StreamReadTopping(FILE* fp)
 	char Toppingname[MAXSTR];
 
 	/* fcanf vs fgets? */
-	fscanf_s(fp, "%d\n", &id);
+	fscanf_s(fp, "%d\n", &id); // takes a format
 
-	fgets(Toppingname, MAXSTR, fp); 
+	fgets(Toppingname, MAXSTR, fp); // no format
 
 	/* What do we need removeTrailingNewLine for? */
 	removeTrailingNewLine(Toppingname);
