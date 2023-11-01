@@ -25,10 +25,12 @@ int main(void)
 {
 	PLAYER p1 = { .id = 1, .username = "player1", .password = "greatpassword", .exp = 12321.3513f };
 
-	FILE* fp = fopen(FILENAME, "w"); // does FILENAME need to exist in our directory?
+	FILE* fp = fopen(FILENAME, "w"); // does FILENAME need to exist in our directory? No, it creates/override it
 
 	if (fp)
 	{
+		//fprintf(fp, "%d\n%s\n%s\n%f\n", p1.id, p1.username, p1.password, p1.exp); // one liner
+
 		fprintf(fp, "%d\n", p1.id);
 		fprintf(fp, "%s\n", p1.username);
 		fprintf(fp, "%s\n", p1.password);

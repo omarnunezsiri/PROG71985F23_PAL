@@ -7,20 +7,22 @@
 // 1.0			2023-03-05		initial
 
 #include <stdio.h>
-
+#include <stdbool.h>
 #define MAXSTR 50
 
 int main(void)
 {
 	char input[MAXSTR];
-	fprintf(stdout, "Enter a string: "); // can we simplify this line?
+	puts("Enter a string: "); // adds a newline to the end
+	//printf("Enter a string: "); // does not add a new line to the end
+	//fprintf(stdout, "Enter a string: "); // can we simplify this line?
 
-	fgets(input, MAXSTR, stdin); // scanf or fgets?
+	fgets(input, MAXSTR, stdin); // scanf or fgets? It depends!
 
-	fputs("Writing to stream...(stdout)\n", stdout);
+	fputs("Writing to stream...(stdout)\n", stdout); // can we simplify this line? same idea as before
 	int fputsReturn = fputs(input, stdout);
 
-	if (fputs == EOF) // what are we checking here?
+	if (fputsReturn == EOF) // what are we checking here?
 	{
 		fputs("ERROR. Exiting...\n", stderr);
 	}
