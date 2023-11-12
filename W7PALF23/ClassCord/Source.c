@@ -16,8 +16,20 @@
 
 int main(void)
 {
-	CORD myCord;
-	StreamReadCord(&myCord, DATAFILE);
+	USER user1 = CreateUser(1, "omarnunez", "conestogac", "2002-21-11");
+	USER user2 = CreateUser(2, "johndoe", "doejohn", "1996-01-01");
+	USER user3 = CreateUser(3, "linus", "torvlin111", "1969-12-28");
+	USER user4 = CreateUser(4, "linus", "asddasasadd", "1969-12-28");
+	USER user5 = CreateUser(5, "linus", "13232123113212", "1969-12-28");
+
+	CORD myCord = CreateCord(1);
+
+	// What does the & symbol represent?
+	AddNewUser(&myCord, user1);
+	AddNewUser(&myCord, user2);
+	AddNewUser(&myCord, user3);
+	AddNewUser(&myCord, user4);
+	AddNewUser(&myCord, user5);
 
 	DisplayCord(myCord);
 
