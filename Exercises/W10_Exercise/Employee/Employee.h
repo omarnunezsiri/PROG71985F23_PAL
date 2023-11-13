@@ -39,5 +39,7 @@ double getEmployWages(EMPLOYEE);
 bool LoadEmployee(char* , EMPLOYEE*);
 bool SaveEmployee(EMPLOYEE, char*);
 
+/* Display */
+void DisplayEmployee(EMPLOYEE);
 /* Delete? an employee */ 
 //void DestroyEmployee(EMPLOYEE*);

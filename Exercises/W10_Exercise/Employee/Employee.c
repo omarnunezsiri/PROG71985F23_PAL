@@ -69,12 +69,17 @@ double getEmployWages(EMPLOYEE e){
     return e.wage;
 }
 
+void DisplayEmployee(EMPLOYEE e)
+{
+    printf("FirstName: %s, LastName: %s, ID num:%s, access level %i, wage: %lf\n", e.firstName, e.lastName, e.id, e.eAccess, e.wage);
+}
+
 /*
-* id
-* firstName
-* lastName
-* access
-* wage
+* id   char*
+* firstName   char*
+* lastName   char*
+* access  int
+* wage  double
 */
 
 // Credits: PROG71985 Week 6 - Dr. Hendrikse
