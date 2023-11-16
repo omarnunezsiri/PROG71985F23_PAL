@@ -35,11 +35,8 @@ int getEmployEAccess(EMPLOYEE);
 double getEmployWages(EMPLOYEE);
 
 /* File IO */
-// EMPLOYEE LoadEmployee(char*); 
-bool LoadEmployee(char* , EMPLOYEE*);
-bool SaveEmployee(EMPLOYEE, char*);
+bool LoadEmployee(FILE*, EMPLOYEE*);
+bool SaveEmployee(EMPLOYEE, FILE*);
 
 /* Display */
 void DisplayEmployee(EMPLOYEE);
-/* Delete? an employee */ 
-//void DestroyEmployee(EMPLOYEE*);

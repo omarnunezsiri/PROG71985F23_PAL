@@ -24,7 +24,7 @@ int main(void)
 	SetEmployeeEAccess(&e2, 2);
 	SetEmployeeWage(&e2, 100);
 
-	// bool AddEmployeeToList(PLIST, EMPLOYEE);
+
 	LIST myList = CreateList();
 	if (!AddEmployeeToList(&myList, e))
 		exit(EXIT_FAILURE);

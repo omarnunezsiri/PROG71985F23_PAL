@@ -69,18 +69,11 @@ double getEmployWages(EMPLOYEE e){
     return e.wage;
 }
 
+/* Utilities */
 void DisplayEmployee(EMPLOYEE e)
 {
     printf("FirstName: %s, LastName: %s, ID num:%s, access level %i, wage: %lf\n", e.firstName, e.lastName, e.id, e.eAccess, e.wage);
 }
-
-/*
-* id   char*
-* firstName   char*
-* lastName   char*
-* access  int
-* wage  double
-*/
 
 // Credits: PROG71985 Week 6 - Dr. Hendrikse
 void removeTrailingNewLine(char* buffer)
@@ -90,16 +83,10 @@ void removeTrailingNewLine(char* buffer)
             buffer[i] = '\0';
 }
 
+
 /* File IO */
-bool LoadEmployee(char* filename, EMPLOYEE* e){
-    FILE* fp;
-    fp = fopen(filename, "r");
+bool LoadEmployee(FILE* fp, EMPLOYEE* e) {
     bool readFromFile = true;
-    if(fp == NULL)
-    {
-        fprintf(stderr, "open failed");
-        return false; //fopen failed
-    }
 
     /* Reading the id */
     char id[MAXSTR];
@@ -131,11 +118,23 @@ bool LoadEmployee(char* filename, EMPLOYEE* e){
     if (readFromFile)
         *e = CreateEmployee(id, firstName, lastName, eAccess, wage);
 
-    fclose(fp); // don't forget to close your files!
-
     return readFromFile;
 }
 
-//bool SaveEmployee(EMPLOYEE, char*){
-//
-//}
+bool SaveEmployee(EMPLOYEE employee, FILE* fp)
+{
+    // Write the id 
+    fprintf(fp, "%s\n", employee.id);
+
+    // Write the first name
+    fprintf(fp, "%s\n", employee.firstName);
+
+    // Write the last name
+    fprintf(fp, "%s\n", employee.lastName);
+
+    // Write the eAccess
+    fprintf(fp, "%d\n", employee.eAccess);
+
+    // Write the wage
+    fprintf(fp, "%lf\n", employee.wage);
+}
