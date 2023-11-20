@@ -20,6 +20,9 @@ typedef struct Employee
 /* Create an employee */
 EMPLOYEE CreateEmployee(char*, char*, char*, int, double);
 
+/* Comparison*/
+bool CompareEmployees(EMPLOYEE, EMPLOYEE);
+
 /* Set information */
 bool SetEmployeeID(EMPLOYEE*, char*);
 bool SetEmployeeFirstName(EMPLOYEE*, char*);

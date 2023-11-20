@@ -13,4 +13,5 @@ bool AddEmployeeToList(PLIST, EMPLOYEE);
 void DisplayList(LIST);
 void StreamWriteList(LIST, char*);
 LIST StreamReadList(char*);
+void FireAnEmployee(PLIST, EMPLOYEE);
 void DisposeList(PLIST);

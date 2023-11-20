@@ -34,6 +34,51 @@ bool AddEmployeeToList(PLIST list, EMPLOYEE newEmp)
 	return true;
 }
 
+void FireAnEmployee(PLIST list, EMPLOYEE employeeToFire)
+{
+	PNODE current = list->head;
+
+	/* Delete the first element */
+	if (CompareEmployees(current->emp, employeeToFire))
+	{
+		if (GetNextNode(current) != NULL) // information to change is in the first node.
+			list->head = GetNextNode(current);
+		else  // there is only one node
+			list->head = NULL;
+
+		DisposeNode(current); // free dynamically allocated memory!
+		return;
+	}
+
+	PNODE prev = NULL; // we need to keep track of the previous link 
+	while (current != NULL && !CompareEmployees(current->emp, employeeToFire))
+	{
+		prev = current;
+		current = GetNextNode(current);
+	}
+
+	if (current == NULL) // what if we traversed the list and the item wasn't found?
+		return;
+
+	SetNextNode(prev, GetNextNode(current)); // remove the link
+
+	/*
+	* Initially:
+	* 1            2               3
+	* prev --->  current ---> currentNext
+	*
+	* Link removed:
+	* 1           3
+	* prev --> currentNext
+	*
+	* Get rid of node:
+	* 2
+	* free(current)
+	*/
+
+	DisposeNode(current); // free dynamically allocated memory
+}
+
 void DisplayList(LIST list)
 {
 	if (list.head)

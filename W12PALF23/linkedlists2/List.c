@@ -49,6 +49,7 @@ void RemoveItemFromList(PLIST list, ITEM itemToRemove)
 {
 	PNODE current = list->head;
 
+	/* Delete the first element */
 	if (CompareItems(current->item, itemToRemove))
 	{
 		if (GetNextNode(current) != NULL) // information to change is in the first node.

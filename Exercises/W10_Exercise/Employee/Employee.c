@@ -16,6 +16,12 @@ EMPLOYEE CreateEmployee(char* id, char* firstName, char* lastName, int eAccess, 
     return newEmployee;
 }
 
+/* Comparison */
+bool CompareEmployees(EMPLOYEE e1, EMPLOYEE e2)
+{
+    return strcmp(e1.id, e2.id) == 0 ? true : false;
+}
+
 /* Set information */  
 bool SetEmployeeID(EMPLOYEE* e, char* id){
     if (id == NULL || strlen(id) == 0)
