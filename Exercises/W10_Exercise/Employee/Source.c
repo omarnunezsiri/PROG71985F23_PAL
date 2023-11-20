@@ -1,51 +1,33 @@
+// PAL Week 12 - Building Program: Currently at reading/writing to a file
+// 
+// PROG71985-W23
+//
+//
+
+#define FILENAME "EmployeeDB.txt"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "Employee.h"
 #include "List.h"
 
-#define FILENAME "Employee.txt"
-
 int main(void)
 {
-	/* Create a few employees, add them to the list and display the list */
-	EMPLOYEE e;
+	printf("CoolBuilding :)\n\n");
 
-	SetEmployeeID(&e, "58192");
-	SetEmployeeFirstName(&e, "John");
-	SetEmployeeLastName(&e, "Joe");
-	SetEmployeeEAccess(&e, 3);
-	SetEmployeeWage(&e, 69.9);
+	/* Placeholder main function. Write your code here! */
+	LIST myList = StreamReadList(FILENAME); // reads the past state of the list
 
-	EMPLOYEE e2;
+	printf("\n----------------------- Items ---------------------\n");
+	DisplayList(myList); // display before delete
 
-	SetEmployeeID(&e2, "12345");
-	SetEmployeeFirstName(&e2, "Johnson");
-	SetEmployeeLastName(&e2, "Bob");
-	SetEmployeeEAccess(&e2, 2);
-	SetEmployeeWage(&e2, 100);
+	/* To-do: Find an employee in the list */
 
+	/* To-do: Delete the employee from the list */
 
-	LIST myList = CreateList();
-	if (!AddEmployeeToList(&myList, e))
-		exit(EXIT_FAILURE);
+	/* To-do: Try to find the employee in the list after deleting */
 
-	if (!AddEmployeeToList(&myList, e2))
-		exit(EXIT_FAILURE);
-
-	DisplayList(myList);
-
-	DisposeList(&myList);
+	StreamWriteList(myList, FILENAME); // writes the current state of the list
+	DisposeList(&myList); // don't forget to free dynamically allocated variables!
 	return 0;
 }
-
-// Old implementation from W10
-//EMPLOYEE e;
-
-//if (!LoadEmployee(FILENAME, &e))
-//	exit(EXIT_FAILURE);
-//
-//printf("%s --- %s --- %s --- %d --- %lf\n", getEmployID(e), getEmployFirstName(e), getEmployLastName(e), getEmployEAccess(e), getEmployWages(e));
-//
-//SetEmployeeFirstName(&e, "Steve");
-
-//printf("%s --- %s --- %s --- %d --- %lf\n", getEmployID(e), getEmployFirstName(e), getEmployLastName(e), getEmployEAccess(e), getEmployWages(e));

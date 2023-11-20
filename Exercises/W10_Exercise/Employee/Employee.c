@@ -106,12 +106,12 @@ bool LoadEmployee(FILE* fp, EMPLOYEE* e) {
     /* Reading the eAccess */
     int eAccess;
 
-    if (fscanf(fp, "%d", &eAccess) != 1)
+    if (fscanf(fp, "%d\n", &eAccess) != 1)
         readFromFile = false;
 
     /* Reading the wage */
     double wage;
-    if (fscanf(fp, "%lf", &wage) != 1)
+    if (fscanf(fp, "%lf\n", &wage) != 1)
         readFromFile = false;
 
     /* If no errors; create the employee */

@@ -138,7 +138,7 @@
     <ClInclude Include="Node.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Employee.txt" />
+    <Text Include="EmployeeDB.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
