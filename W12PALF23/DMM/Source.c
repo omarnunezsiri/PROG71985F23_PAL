@@ -42,19 +42,34 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 
-	printf("\n pInt:%d \n", *pInt);
+	printf("\n pInt:%d \n", *pInt); // garbage data (-81238123)
 	memset(pInt, NULL, sizeof(int)); // set the integer to NULL (0) for a "safe" state
-	printf("\n pInt after memset:%d \n", *pInt);
+	printf("\n pInt after memset:%d \n", *pInt); // initialized data (0)
 
 
-	int* pAnotherInt = (int*)calloc(1, sizeof(int)); // allocate another int
+	//int* pAnotherInt = (int*)malloc(5 * sizeof(int));
+	int* pAnotherInt = (int*)calloc(5, sizeof(int)); // allocate another int
 	if (!pAnotherInt)
 	{
 		fprintf(stderr, "Error allocating pAnotherInt. Exiting...\n");
 		exit(EXIT_FAILURE);
 	}
 
-	printf("\n pAnotherInt:%d \n", *pAnotherInt); // we don't need memset!
+	//printf("\n pAnotherInt:%d \n", *pAnotherInt); // we don't need memset! initialized data (0)
+
+	for (int i = 0; i < 5; i++)
+	{
+		printf("AnotherInt[%d] = %d\n", i, pAnotherInt[i]);
+	}
+
+	char* id = (char*)malloc(sizeof(char) * 30);
+	if (!id)
+	{
+		fprintf(stderr, "Error allocating string. Exiting...\n");
+		exit(EXIT_FAILURE);
+	}
+
+
 
 	char* string = (char*)malloc(sizeof(char) * 6);
 	if (!string)
@@ -63,8 +78,7 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 
-
-	strcpy(string, "Omar");
+	strcpy(string, "Omar\0");
 	printf("\n initial string: %s \n", string);
 
 	char* pString = string; // hold a copy just in case realloc fails!
@@ -76,9 +90,12 @@ int main(void)
 		fprintf(stderr, "Error reallocating string. Exiting...\n");
 		exit(EXIT_FAILURE);
 	}
-
+	
 	strcat(string, " Nunez Siri");
-	printf("\n realloced string: %s \n", string);
+	printf("\n realloced string: %s \n", string); // Omar Nunez Siri
+
+	printf("string: %p and pString: %p \n", string, pString);
+	printf("string: %s and pString %s \n", string, pString);
 
 	free(pInt);
 	free(pAnotherInt);

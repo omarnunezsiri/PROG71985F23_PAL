@@ -22,6 +22,20 @@ int main(void)
 	DisplayList(myList); // display before delete
 
 	/* To-do: Delete the employee from the list */
+	//EMPLOYEE* eP = (EMPLOYEE*)calloc(1, sizeof(EMPLOYEE));
+	//if (!eP)
+	//{
+	//	exit(EXIT_FAILURE);
+	//}
+
+	//SetEmployeeFirstName(eP, "Omar");
+	//SetEmployeeID(eP, "99999");
+	//SetEmployeeLastName(eP, "Nunez");
+	//SetEmployeeWage(eP, 120.6);
+	//SetEmployeeEAccess(eP, 3);
+
+	//DisplayEmployee(*eP);
+
 	EMPLOYEE e = CreateEmployee("12345", "", "", 0, 0.0);
 
 	FireAnEmployee(&myList, e);
@@ -31,5 +45,6 @@ int main(void)
 
 	StreamWriteList(myList, FILENAME); // writes the current state of the list
 	DisposeList(&myList); // don't forget to free dynamically allocated variables!
+	free(&myList);
 	return 0;
 }

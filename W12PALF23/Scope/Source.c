@@ -10,13 +10,13 @@
 #include <Windows.h> // Sleep() functionality for demo
 const int x = 100; // what scope does x cover?
 
-int DivideTwoNumbers(int);
+int DivideTwoNumbers(int*);
 
 int main(void)
 {
 	int y = 9; // what scope does y cover?
 
-	printf("%d / %d: %d\n", x, y, DivideTwoNumbers(y));
+	printf("%d / %d: %d\n", x, y, DivideTwoNumbers(&y));
 	Sleep(10000);
 
 	// what scope does i cover?
@@ -29,9 +29,9 @@ int main(void)
 }
 
 // what scope does this y cover?
-int DivideTwoNumbers(int y)
+int DivideTwoNumbers(int* y)
 {
-	y++; // are we updating y in line 9 as well?
+	(*y)++; // are we updating y in line 9 as well?
 
-	return (x / y);
+	return (x / *y);
 }

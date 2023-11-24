@@ -5,7 +5,7 @@
 
 #define ENTRY 0
 #define INTER 1
-#define ADVANCED 3=
+#define ADVANCED 3
 #define MAXSTR 30
 
 typedef struct Employee
