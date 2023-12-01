@@ -21,30 +21,24 @@ int main(void)
 	printf("\n----------------------- Items before deleting ---------------------\n");
 	DisplayList(myList); // display before delete
 
-	/* To-do: Delete the employee from the list */
-	//EMPLOYEE* eP = (EMPLOYEE*)calloc(1, sizeof(EMPLOYEE));
-	//if (!eP)
-	//{
-	//	exit(EXIT_FAILURE);
-	//}
+	EMPLOYEE e = CreateEmployee("69120", "", "", 0, 0.0); // only criteria required is the id
 
-	//SetEmployeeFirstName(eP, "Omar");
-	//SetEmployeeID(eP, "99999");
-	//SetEmployeeLastName(eP, "Nunez");
-	//SetEmployeeWage(eP, 120.6);
-	//SetEmployeeEAccess(eP, 3);
+	EMPLOYEE* found = FindEmployeeRecursively(GetListHeadNode(&myList), e);
 
-	//DisplayEmployee(*eP);
-
-	EMPLOYEE e = CreateEmployee("12345", "", "", 0, 0.0);
-
-	FireAnEmployee(&myList, e);
+	if (!found) // no one to fire
+	{
+		fprintf(stderr, "\nEmployee with id %s not found.\n", getEmployID(e));
+	}
+	else
+	{
+		printf("Employee with id %s found. Proceeding to delete employee from list.\n", getEmployID(e));
+		FireAnEmployee(&myList, e);
+	}
 
 	printf("\n----------------------- Items after deleting ---------------------\n");
 	DisplayList(myList); // display before delete
 
 	StreamWriteList(myList, FILENAME); // writes the current state of the list
 	DisposeList(&myList); // don't forget to free dynamically allocated variables!
-	free(&myList);
 	return 0;
 }

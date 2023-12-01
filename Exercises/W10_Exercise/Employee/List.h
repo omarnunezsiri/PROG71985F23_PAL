@@ -10,6 +10,8 @@ typedef struct List
 
 LIST CreateList();
 bool AddEmployeeToList(PLIST, EMPLOYEE);
+PNODE GetListHeadNode(PLIST);
+EMPLOYEE* FindEmployeeRecursively(PNODE, EMPLOYEE);
 void DisplayList(LIST);
 void StreamWriteList(LIST, char*);
 LIST StreamReadList(char*);

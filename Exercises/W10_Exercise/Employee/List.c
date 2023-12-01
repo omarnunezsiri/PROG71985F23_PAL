@@ -8,6 +8,11 @@ LIST CreateList()
 	return newList;
 }
 
+PNODE GetListHeadNode(PLIST list)
+{
+	return list->head;
+}
+
 bool AddEmployeeToList(PLIST list, EMPLOYEE newEmp)
 {
 	PNODE newNode = CreateNode(newEmp);
@@ -93,6 +98,23 @@ void DisplayList(LIST list)
 	else
 	{
 		printf("List is empty. Add items to it!\n");
+	}
+}
+
+/* To-do */
+EMPLOYEE* FindEmployeeRecursively(PNODE list, EMPLOYEE employeeToFind)
+{
+	PNODE current = list;
+
+	if (!current) // base case (employee not found)
+		return NULL;
+	else
+	{
+		EMPLOYEE currentEmployee = GetNodeEmployee(current);
+		if (CompareEmployees(employeeToFind, currentEmployee))
+			return &currentEmployee;
+		else
+			return FindEmployeeRecursively(current->next, employeeToFind);
 	}
 }
 
